@@ -13,3 +13,6 @@ ALTER TABLE changes an existing table
 UPDATE edits a row in a table
 
 DELETE FROM deletes rows from a table
+
+The WHERE clause filters rows, whereas the HAVING clause filter groups
+The HAVING clause was added to SQL because WHERE could not be used with aggregate functions
