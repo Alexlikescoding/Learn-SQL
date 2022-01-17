@@ -1,0 +1,44 @@
+select category, round(avg(valuation),2)
+FROM startups
+group by category
+order by avg(valuation) desc
+
+
+select category, count(distinct name) as number
+FROM startups
+group by category
+having count(distinct name) > 3
+
+
+select location, round(avg(employees),0)
+FROM startups
+group by location
+having avg(employees) > 500
+
+
+SELECT user, sum(score)   # this data is from Y Combinator Hacker News https://news.ycombinator.com/
+FROM hacker_news
+group by user
+having sum(score) > 200
+
+
+SELECT count(*),
+  CASE
+    WHEN url LIKE '%github%' THEN 'GitHub'
+    WHEN url LIKE '%medium%' THEN 'Medium'
+    WHEN url LIKE '%nytimes%' THEN 'New York Times'
+    else 'other'
+  END AS 'Source'
+FROM hacker_news
+group by Source
+
+
+SELECT strftime('%H', timestamp) as hour, avg(score), count(*)
+FROM hacker_news
+group by hour
+
+
+SELECT strftime('%H', timestamp) as hour, round(avg(score),0) as avg_score, count(*) as story_count
+FROM hacker_news
+group by hour
+having hour is not null
